@@ -1,0 +1,10 @@
+{
+    "app_name": "Currency Demo App",
+    "welcome": "Welcome to our application!",
+    "hello": "Hello, {name}!",
+    "add_cryptos": "Add Cryptos",
+    "add_fiats": "Add Fiats",
+    "add_new": "Add New",
+    "clear": "Clear",
+    "search": "Search"
+}

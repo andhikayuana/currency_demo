@@ -1,0 +1,10 @@
+{
+    "app_name": "Currency Demo App",
+    "welcome": "Selamat datang di aplikasi kami!",
+    "hello": "Halo, {name}!",
+    "add_crypto": "Tambahkan Crypto",
+    "add_fiat": "Tambahkan Fiat",
+    "add_new": "Tambahkan Baru",
+    "clear": "Bersihkan",
+    "search": "Cari"
+}
