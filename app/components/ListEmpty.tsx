@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 interface ListEmptyProps {
     isListEmpty: boolean;
@@ -7,6 +8,8 @@ interface ListEmptyProps {
 }
 
 export default function ListEmpty({ isListEmpty = false, searchQuery = '' }: ListEmptyProps) {
+    const { t } = useTranslation();
+
     return (
         <View style={styles.container}>
             <Text style={styles.icon}>
@@ -14,8 +17,8 @@ export default function ListEmpty({ isListEmpty = false, searchQuery = '' }: Lis
             </Text>
             <Text style={styles.message}>
                 {isListEmpty && searchQuery !== ""
-                    ? `No results found for "${searchQuery}"`
-                    : "No items available, please add currencies to your list."}
+                    ? t('no_results_found', { query: searchQuery})
+                    : t('no_items_available')}
             </Text>
         </View>
     )
