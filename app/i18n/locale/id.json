@@ -6,5 +6,15 @@
     "add_fiat": "Tambahkan Fiat",
     "add_new": "Tambahkan Baru",
     "clear": "Bersihkan",
-    "search": "Cari"
+    "search": "Cari",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "input_required": "{field} Wajib diisi",
+    "currency_id": "ID Mata Uang",
+    "currency_name": "Nama Mata Uang",
+    "currency_symbol": "Simbol Mata Uang",
+    "currency_type": "Tipe Mata Uang",
+    "currency_code": "Kode Mata Uang",
+    "no_results_found": "Tidak ada hasil ditemukan untuk \"{query}\" \n Coba \"MCO\"",
+    "no_items_available": "Tidak ada item yang tersedia, silakan tambahkan mata uang ke daftar Anda."
 }

@@ -1,13 +1,13 @@
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack";
-import HomeScreen from "../screen/HomeScreen";
+import HomeScreen from "../screens/HomeScreen";
+import TestScreen from "../screens/TestScreen";
 
 export type RootStackParamList = {
   Home: undefined;
-  About: undefined;
+  Play: undefined;
 }
   
 export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, "Home">;
-export type ProfileScreenProps = NativeStackScreenProps<RootStackParamList, "About">;
   
 const Stack = createNativeStackNavigator<RootStackParamList>();
   
@@ -15,6 +15,7 @@ const RootStackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="Play" component={TestScreen} />
     </Stack.Navigator>
  );
 }

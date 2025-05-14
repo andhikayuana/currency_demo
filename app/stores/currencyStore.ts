@@ -1,59 +1,22 @@
 import { create } from 'zustand';
+import { cryptoCurrencies, Currency, fiatCurrencies } from '../types/Currency';
 
-// Define types for our currency models
-export interface Currency {
-    id: string;
-    code: string;
-    name: string;
-    symbol: string;
-    type: 'fiat' | 'crypto';
-}
-
-interface CurrencyState {
+type State = {
     currencies: Currency[];
     searchQuery: string;
     isLoading: boolean;
     error: string | null;
+    getFilteredCurrencies: () => Currency[];
+}
 
-    // Actions
+type Actions = {
     fetchCurrencies: (type: String) => Promise<void>;
     addCurrency: (currency: Currency) => void;
     clearCurrencies: () => void;
     setSearchQuery: (query: string) => void;
-
-    // Computed values (selectors)
-    getFilteredCurrencies: () => Currency[];
 }
 
-const cryptoCurrencies: Currency[] = [
-    { id: 'BTC', code: 'BTC', name: 'Bitcoin', symbol: '₿', type: 'crypto' },
-    { id: 'ETH', code: 'ETH', name: 'Ethereum', symbol: 'Ξ', type: 'crypto' },
-    { id: 'XRP', code: 'XRP', name: 'XRP', symbol: 'XRP', type: 'crypto' },
-    { id: 'BCH', code: 'BCH', name: 'Bitcoin Cash', symbol: 'BCH', type: 'crypto' },
-    { id: 'LTC', code: 'LTC', name: 'Litecoin', symbol: 'LTC', type: 'crypto' },
-    { id: 'EOS', code: 'EOS', name: 'EOS', symbol: 'EOS', type: 'crypto' },
-    { id: 'BNB', code: 'BNB', name: 'Binance Coin', symbol: 'BNB', type: 'crypto' },
-    { id: 'LINK', code: 'LINK', name: 'Chainlink', symbol: 'LINK', type: 'crypto' },
-    { id: 'NEO', code: 'NEO', name: 'NEO', symbol: 'NEO', type: 'crypto' },
-    { id: 'ETC', code: 'ETC', name: 'Ethereum Classic', symbol: 'ETC', type: 'crypto' },
-    { id: 'ONT', code: 'ONT', name: 'Ontology', symbol: 'ONT', type: 'crypto' },
-    { id: 'CRO', code: 'CRO', name: 'Crypto.com Chain', symbol: 'CRO', type: 'crypto' },
-    { id: 'CUC', code: 'CUC', name: 'Cucumber', symbol: 'CUC', type: 'crypto' },
-    { id: 'USDC', code: 'USDC', name: 'USD Coin', symbol: 'USDC', type: 'crypto' }
-];
-
-// Fiat currencies
-const fiatCurrencies: Currency[] = [
-    { id: 'USD', code: 'USD', name: 'United States Dollar', symbol: '$', type: 'fiat' },
-    { id: 'EUR', code: 'EUR', name: 'Euro', symbol: '€', type: 'fiat' },
-    { id: 'GBP', code: 'GBP', name: 'British Pound', symbol: '£', type: 'fiat' },
-    { id: 'SGD', code: 'SGD', name: 'Singapore Dollar', symbol: '$', type: 'fiat' },
-    { id: 'HKD', code: 'HKD', name: 'Hong Kong Dollar', symbol: '$', type: 'fiat' },
-    { id: 'JPY', code: 'JPY', name: 'Japanese Yen', symbol: '¥', type: 'fiat' },
-    { id: 'AUD', code: 'AUD', name: 'Australian Dollar', symbol: '$', type: 'fiat' }
-];
-
-const useCurrencyStore = create<CurrencyState>((set, get) => ({
+const useCurrencyStore = create<State & Actions>((set, get) => ({
     currencies: [],
     searchQuery: '',
     isLoading: false,
@@ -63,9 +26,8 @@ const useCurrencyStore = create<CurrencyState>((set, get) => ({
         set({ isLoading: true, error: null });
 
         try {
-
-            // Add a delay to simulate API fetch
-            // await new Promise(resolve => setTimeout(resolve, 500));
+            // Simulate a network request
+            await new Promise((resolve) => setTimeout(resolve, 500));
 
             // Combine both arrays
             let currencies: Currency[] = [];
@@ -118,12 +80,12 @@ const useCurrencyStore = create<CurrencyState>((set, get) => ({
             const nameStartsWithQuery = currency.name.toLowerCase().startsWith(query);
             
             // Condition 2: Name contains a space followed by the search term
-            const nameContainsSpaceQuery = currency.name.toLowerCase().includes(' ' + query);
+            const nameContainsSpaceQuery = currency.name.toLowerCase().includes(` ${query}`);
             
-            // Condition 3: Symbol starts with the search term
-            const symbolStartsWithQuery = currency.code.toLowerCase().startsWith(query);
+            // Condition 3: Code starts with the search term
+            const codeStartsWithQuery = currency.code.toLowerCase().startsWith(query);
             
-            return nameStartsWithQuery || nameContainsSpaceQuery || symbolStartsWithQuery;
+            return nameStartsWithQuery || nameContainsSpaceQuery || codeStartsWithQuery;
         });
     },
 }));
