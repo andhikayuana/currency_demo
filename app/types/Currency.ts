@@ -20,7 +20,8 @@ export const cryptoCurrencies: Currency[] = [
     { id: 'ONT', code: 'ONT', name: 'Ontology', symbol: 'ONT', type: 'crypto' },
     { id: 'CRO', code: 'CRO', name: 'Crypto.com Chain', symbol: 'CRO', type: 'crypto' },
     { id: 'CUC', code: 'CUC', name: 'Cucumber', symbol: 'CUC', type: 'crypto' },
-    { id: 'USDC', code: 'USDC', name: 'USD Coin', symbol: 'USDC', type: 'crypto' }
+    { id: 'USDC', code: 'USDC', name: 'USD Coin', symbol: 'USDC', type: 'crypto' },
+    { id: 'MCO', code: 'MCO', name: 'Monaco', symbol: 'MCO', type: 'crypto' }
 ];
 
 // Fiat currencies
