@@ -1,5 +1,5 @@
 import { StyleSheet, FlatList } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HomeScreenProps } from '../navigation/RootStackNavigator'
 import { useTranslation } from 'react-i18next'
 import useCurrencyStore from '../stores/currencyStore'
@@ -22,6 +22,10 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         addCurrency,
     } = useCurrencyStore();
     const [addNewSheetVisible, setAddNewSheetVisible] = useState(false);
+
+    useEffect(() => {
+        fetchCurrencies('');
+    }, []);
 
     return (
         <View>
